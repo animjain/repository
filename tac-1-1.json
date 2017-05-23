@@ -136,7 +136,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', concat(parameters('index'),variables('diagnosticsStorageAccountName'))), '2016-01-01').primaryEndpoints.blob)]"
+                        "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', concat(parameters('index'),parameters('diagnosticsStorageAccountName'))), '2016-01-01').primaryEndpoints.blob)]"
                     }
                 },
                 "availabilitySet": {
