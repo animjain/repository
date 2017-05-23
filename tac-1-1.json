@@ -79,9 +79,9 @@
         }
     },
     "variables": {
-        "vnetId": "[resourceId(parameters('vnResourceGroupName'),'Microsoft.Network/virtualNetworks/', concat(parameters('index'), parameters('virtualNetworkName')))]",
+        "vnetId": "[resourceId(parameters('vnResourceGroupName'),'Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName')))]",
         "vmID":"[resourceId('Microsoft.Compute/virtualMachines',  concat(parameters('index'), parameters('virtualMachineName')))]",
-        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('index'), parameters('subnetName'))]"
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
     "resources": [
         {
