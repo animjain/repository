@@ -79,7 +79,7 @@
         }
     },
     "variables": {
-        "vnetId": "[resourceId(parameters('vnResourceGroupName'),'Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName')))]",
+        "vnetId": "[resourceId(parameters('vnResourceGroupName'),'Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
         "vmID":"[resourceId('Microsoft.Compute/virtualMachines',  concat(parameters('index'), parameters('virtualMachineName')))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
