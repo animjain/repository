@@ -176,40 +176,6 @@
                     }
                 ]
             }
-        },
-        {
-            "type": "Microsoft.Insights/alertRules",
-            "name": "[parameters('alertName')]",
-            "dependsOn": [
-                "[concat(parameters('index'), parameters('virtualMachineName'))]",
-                "[variables('vmID')]"
-            ],
-            "location": "[resourceGroup().location]",
-            "apiVersion": "2016-03-01",
-            "properties": {
-                "name": "[parameters('alertName')]",
-                "description": "[parameters('alertDescription')]",
-                "isEnabled": "[parameters('isEnabled')]",
-                "condition": {
-                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
-                    "dataSource": {
-                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
-                        "resourceUri": "[variables('vmID')]",
-                        "metricName": "[parameters('metricName')]"
-                    },
-                    "operator": "[parameters('operator')]",
-                    "threshold": "[parameters('threshold')]",
-                    "windowSize": "[parameters('windowSize')]",
-                    "timeAggregation": "[parameters('aggregation')]"
-                },
-                "actions": [
-                    {
-                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleWebhookAction",
-                        "serviceUri": "[parameters('webhookUrl')]",
-                        "properties": {}
-                    }
-                ]
-            }
         }
     ],
     "outputs": {
