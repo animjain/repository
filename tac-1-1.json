@@ -5,9 +5,6 @@
         "location": {
            "type": "string"
         },
-        "virtualMachineID": {
-            "type": "string"
-        },
         "vnResourceGroupName": {
             "type": "string"
         },
