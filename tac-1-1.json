@@ -85,11 +85,24 @@
     },
     "resources": [
         {
+           "type": "Microsoft.Storage/storageAccounts",
+           "name": "[concat(parameters('index'),parameters('diagnosticsStorageAccountName'))]",
+           "apiVersion": "2016-01-01",
+           "location": "[resourceGroup().location]",
+           "sku": {
+             "name": "Premium_LRS"
+           },
+           "kind": "Storage",
+           "properties": {
+           }
+        },
+        {
             "name": "[concat(parameters('index'), parameters('virtualMachineName'))]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2016-04-30-preview",
             "location": "[parameters('location')]",
             "dependsOn": [
+                "[concat(parameters('index'),parameters('diagnosticsStorageAccountName'))]",
                 "[concat('Microsoft.Network/networkInterfaces/', concat(parameters('index'), parameters('networkInterfaceName')))]"
             ],
             "properties": {
