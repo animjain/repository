@@ -181,6 +181,7 @@
             "type": "Microsoft.Insights/alertRules",
             "name": "[parameters('alertName')]",
             "dependsOn": [
+                "[concat(parameters('index'), parameters('virtualMachineName'))]",
                 "[variables('vmID')]"
             ],
             "location": "[resourceGroup().location]",
