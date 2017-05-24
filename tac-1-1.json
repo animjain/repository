@@ -51,24 +51,11 @@
     },
     "resources": [
         {
-           "type": "Microsoft.Storage/storageAccounts",
-           "name": "[concat(parameters('index'),parameters('diagnosticsStorageAccountName'))]",
-           "apiVersion": "2016-01-01",
-           "location": "[resourceGroup().location]",
-           "sku": {
-             "name": "Standard_LRS"
-           },
-           "kind": "Storage",
-           "properties": {
-           }
-        },
-        {
             "name": "[parameters('virtualMachineName')]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2016-04-30-preview",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[concat(parameters('index'),parameters('diagnosticsStorageAccountName'))]",
                 "[concat('Microsoft.Network/networkInterfaces/', concat(parameters('index'), parameters('networkInterfaceName')))]"
             ],
             "properties": {
@@ -115,7 +102,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[concat(reference(concat('Microsoft.Storage/storageAccounts/', concat(parameters('index'),parameters('diagnosticsStorageAccountName'))), '2016-01-01').primaryEndpoints.blob)]"
+                        "storageUri": "[reference(resourceId(parameter('existingResourceGroupName'), 'Microsoft.Storage/storageAccounts', parameters('diagnosticsStorageAccountName')), '2015-06-15').primaryEndpoints['blob']]"
                     }
                 },
                 "availabilitySet": {
