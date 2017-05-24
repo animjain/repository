@@ -76,7 +76,7 @@
             ],
             "properties": {
                 "osProfile": {
-                    "computerName": "[parameters('org1')]"
+                    "computerName": "[parameters('org1')]",
                     "adminUsername": "[parameters('adminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": "true",
