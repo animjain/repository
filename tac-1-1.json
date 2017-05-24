@@ -44,6 +44,9 @@
         "index": {
             "type": "int"
         },
+        "org": {
+          "type": "array",
+        }
     },
     "variables": {
         "vnetId": "[resourceId(parameters('vnResourceGroupName'),'Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
@@ -63,7 +66,7 @@
            }
         },
         {
-            "name": "[concat(parameters('virtualMachineName'),'-',parameters('index'))]",
+            "name": "[parameters('org')[parameters('index')]]"
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2016-04-30-preview",
             "location": "[parameters('location')]",
@@ -73,7 +76,7 @@
             ],
             "properties": {
                 "osProfile": {
-                    "computerName": "[concat(parameters('virtualMachineName'),'-',parameters('index'))]",
+                    "computerName": "[parameters('org')[parameters('index')]]"
                     "adminUsername": "[parameters('adminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": "true",
