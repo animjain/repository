@@ -41,46 +41,12 @@
         "subnetName": {
             "type": "string"
         },
-        "alertName": {
-            "type": "string"
-        },
-        "alertDescription": {
-            "type": "string"
-        },
         "index": {
             "type": "int"
         },
-        "isEnabled": {
-            "type": "bool"
-        },
-        "metricName": {
-            "type": "string"
-        },
-        "operator": {
-            "type": "string"
-        },
-        "threshold": {
-            "type": "string"
-        },
-        "windowSize": {
-            "type": "string"
-        },
-        "aggregation": {
-            "type": "string"
-        },
-        "webhookUrl": {
-            "type": "string"
-        },
-        "sendToServiceOwners": {
-            "type": "bool"
-        },
-        "customEmails": {
-            "type": "string"
-        }
     },
     "variables": {
         "vnetId": "[resourceId(parameters('vnResourceGroupName'),'Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]",
-        "vmID":"[resourceId('Microsoft.Compute/virtualMachines',  concat(parameters('index'), parameters('virtualMachineName')))]",
         "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
     },
     "resources": [
@@ -97,7 +63,7 @@
            }
         },
         {
-            "name": "[concat(parameters('index'), parameters('virtualMachineName'))]",
+            "name": "[concat(parameters('virtualMachineName'),'-',parameters('index'))]",
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2016-04-30-preview",
             "location": "[parameters('location')]",
@@ -107,7 +73,7 @@
             ],
             "properties": {
                 "osProfile": {
-                    "computerName": "[concat(parameters('index'),parameters('virtualMachineName'))]",
+                    "computerName": "[concat(parameters('virtualMachineName'),'-',parameters('index'))]",
                     "adminUsername": "[parameters('adminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": "true",
