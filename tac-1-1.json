@@ -44,8 +44,8 @@
         "index": {
             "type": "int"
         },
-        "org": {
-          "type": "array",
+        "org1": {
+          "type": "string",
         }
     },
     "variables": {
@@ -66,7 +66,7 @@
            }
         },
         {
-            "name": "[parameters('org')[parameters('index')]]"
+            "name": "[parameters('org1')]"
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2016-04-30-preview",
             "location": "[parameters('location')]",
@@ -76,7 +76,7 @@
             ],
             "properties": {
                 "osProfile": {
-                    "computerName": "[parameters('org')[parameters('index')]]"
+                    "computerName": "[parameters('org1')]"
                     "adminUsername": "[parameters('adminUsername')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": "true",
